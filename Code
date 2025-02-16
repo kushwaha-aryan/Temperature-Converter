@@ -1,0 +1,87 @@
+    #include <stdio.h>
+    #include <ctype.h>
+    int main()
+    {
+    int again=1;
+    do{
+
+    printf("\n\n******WELCOME TO TEMPERATURE CALCULATOR******\n\n");
+
+    char unit;
+    printf("enter unit of temperature (c-for celsius , f-for farenhite and k-for kelvin):");
+    scanf(" %c",&unit);
+    unit=toupper(unit);
+
+    if((unit!='C' && unit!='F' && unit!='K') )
+    {
+            printf("enter a valid unit\n");
+            continue ;
+    }
+
+
+    char unit_to;
+    printf("enter your unit to convert into (c-for celsius , f-for farenhite and k-for kelvin):");
+    scanf(" %c",&unit_to);
+    unit_to=toupper(unit_to);
+
+    if((unit_to!='C' && unit_to!='F' && unit_to!='K') )
+    {
+        printf("enter a valid unit\n");
+        continue ;
+    }
+    if((unit==unit_to) ){printf("enter a different unit\n");
+    continue ;}
+
+
+
+
+    float temp;
+    printf("enter temperatur in %c unit:\n",unit);
+    scanf("%f",&temp);
+
+    switch(unit){
+    case 'C':
+    if(unit_to=='F')
+    {
+            printf("is equal to %.2f F\n\n",temp*1.8 + 32);
+    }
+    if(unit_to=='K')
+    {
+            printf("is equal to %.2f K\n\n",temp + 273.15);
+    }
+    break;
+
+    case 'F':
+    if(unit_to=='C')
+    {
+        printf("is equal to %.2f C\n\n",((float)5.0/9)*(temp-32));
+    }
+    if(unit_to=='K')
+    {
+        printf("is equal to %.2f K\n\n",((float)5.0/9)*(temp-32) + 273.15);
+    }
+    break;
+
+    case 'K':
+    if(unit_to=='F')
+    {
+            printf("is equal to %.2f F\n\n",(temp-273.15)*1.8 + 32);
+    }
+    if(unit_to=='C')
+    {
+            printf("is equal to %.2f C\n\n",temp - 273.15);
+    }
+    break;
+
+    default :
+    printf("something seems wrong!!\n\n");
+    }
+
+    printf("1. Convert another temperature \n2. Exit \n");
+    scanf("%d",&again);
+    }while(again==1);
+
+    printf("\n\n**THANKX FOR USING THIS CALCULATOR**\n\n");
+
+    return 0;
+    }
