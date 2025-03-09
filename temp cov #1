@@ -1,0 +1,93 @@
+    #include <stdio.h>
+    #include <ctype.h>
+    int main()
+    {
+    int again=1;
+    do{
+
+    printf("\n\n******WELCOME TO TEMPERATURE CALCULATOR******\n\n");
+
+    char unit;
+    printf("\nc-for celsius \nf-for Fahrenheit \nk-for kelvin \nr-for Rankine \nE-for Réaumur \nEnter unit of temperature :");
+    scanf(" %c",&unit);
+    unit=toupper(unit);
+
+    if((unit!='C' && unit!='F' && unit!='K' && unit!='R' && unit!='E') )
+    {
+            printf("\nEnter a valid unit\n");
+            continue ;
+    }
+
+    char unit_to;
+    printf("\nc-for celsius \nf-for Fahrenheit \nk-for kelvin \nr-for Rankine \nE-for Réaumur \nEnter your unit to convert into  :");
+    scanf(" %c",&unit_to);
+    unit_to=toupper(unit_to);
+
+    if((unit_to!='C' && unit_to!='F' && unit_to!='K' && unit_to!='R' && unit_to!='E') )
+    {
+        printf("\nEnter a valid unit\n");
+        continue ;
+    }
+    if((unit==unit_to) ){printf("enter a different unit\n");
+    continue ;}
+
+    double temp;
+    printf("\nEnter temperature in %c unit:",unit);
+    if(scanf("%lf",&temp)!=1)
+    {
+        printf("Invalid input! Please enter a number.\n");
+        while(getchar() != '\n');
+        continue;
+    }
+
+
+    switch(unit)//converting in celcius
+    {
+        case 'F':
+            temp=((double)5.0/9)*(temp-32);
+            break;
+        case 'K':
+            temp=temp - 273.15;
+            break;
+        case 'R':
+            temp=(temp - 491.67) * 5.0/9;
+            break;
+        case 'E':
+            temp=temp*1.25;
+            break;
+    }
+
+    switch(unit_to)
+    {
+        case 'C':
+        printf("is equal to %.2lf C\n\n",temp); break;
+
+        case 'F':
+        printf("is equal to %.2lf F\n\n",temp*1.8 + 32); break;
+
+        case 'K':
+        printf("is equal to %.2lf K\n\n",temp + 273.15); break;
+
+        case 'R':
+        printf("is equal to %.2lf R\n\n",(temp + 273.15) * 1.8); break;
+
+        case 'E':
+        printf("is equal to %.2lf Re\n\n",temp*0.8); break;
+
+        default: printf("Unexpected error in conversion.\n"); continue;
+    }
+
+    printf("1. Convert another temperature \n2. Exit \n");
+    if(scanf("%d",&again)!=1)
+    {
+        printf("Invalid input! Please enter a number.\n");
+        while(getchar() != '\n');
+        continue;
+    }
+
+    }while(again==1);
+
+    printf("\n\n**THANKS FOR USING THIS CALCULATOR**\n\n");
+
+    return 0;
+    }
